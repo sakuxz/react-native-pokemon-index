@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 19,
     color: 'rgb(92, 106, 110)',
-    marginTop: 30,
+    marginTop: 35,
     marginBottom: 11,
     fontWeight: '100'
   },
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     width: 53,
     height:2,
     backgroundColor: 'rgb(79, 92, 96)',
-    marginBottom: 25
+    marginBottom: 20
   },
   centerDiv: {
     flexDirection: 'row',
