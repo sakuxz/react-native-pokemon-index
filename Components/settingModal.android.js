@@ -14,7 +14,8 @@ import {
   TextInput,
   Dimensions,
   Modal,
-  Alert
+  Alert,
+  Animated
 } from 'react-native';
 var {height, width} = Dimensions.get('window');
 
@@ -22,17 +23,23 @@ var {height, width} = Dimensions.get('window');
 class SettingModal extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      slideInValue: new Animated.Value(65),
+    };
   }
   render() {
     return (
       <Modal
-        animationType={'slide'}
         transparent={true}
         visible={this.props.open}
         onRequestClose={() => {this.props.toggleModal()}}
+        animationType='fade'
         >
         <View style={styles.updateModalMask}></View>
-        <View style={styles.updateModal}>
+        <Animated.View style={[
+            styles.updateModal,
+            {transform: [{translateY: this.state.slideInValue}]}
+          ]} >
           <View style={{padding:18,paddingTop:16,paddingBottom:6}} >
             <Text>Limit</Text>
             <Input selectTextOnFocus={true} keyboardType='numeric' value={this.props.limit.toString()} placeholder="Limit" onChangeText={(limit) => {this.props.setLimit(limit)}} />
@@ -40,12 +47,35 @@ class SettingModal extends Component {
             <Input selectTextOnFocus={true} keyboardType='numeric' value={this.props.offset.toString()} placeholder="Offset" onChangeText={(offset) => {this.props.setOffset(offset)}} />
           </View>
           <Button style={{margin: 15,elevation:0}} block warning onPress={()=>this.updatePokemons()} >更新 Pokemon</Button>
-        </View>
+        </Animated.View>
       </Modal>
     );
   }
 
-  componentDidUpdate(){
+  componentDidMount() {
+    this.state.slideInValue.setValue(65);
+    Animated.spring(
+      this.state.slideInValue,
+      {
+        toValue: 0,
+        friction: 5,
+        tension: 0
+      }
+    ).start();
+  }
+
+  componentWillUpdate(nextProps, nextState){
+    if(nextProps.open !== this.props.open && nextProps.open === true){
+      this.state.slideInValue.setValue(65);
+      Animated.spring(
+        this.state.slideInValue,
+        {
+          toValue: 0,
+          friction: 5,
+          tension: 0
+        }
+      ).start();
+    }
   }
 
   updatePokemons(){
@@ -66,6 +96,7 @@ const styles = StyleSheet.create({
     bottom: -5,
     left: width*0.025,
     width: width*0.95,
+
   },
   updateModalMask: {
     backgroundColor: 'white',

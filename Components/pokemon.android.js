@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     flexDirection: 'column',
     backgroundColor: '#F5FCFF',
-    paddingTop: 8,
+    paddingTop: 10,
     paddingLeft: 15,
     paddingRight: 0,
     paddingBottom: 0,

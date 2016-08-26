@@ -26,8 +26,6 @@ class IndexPage extends Component {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-    // this.updateData();
-
     this.state = {
       settingModal: true,
       limit: 0,

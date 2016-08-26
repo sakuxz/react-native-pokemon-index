@@ -46,22 +46,6 @@ class reactnativepractice extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop:16,
-    paddingLeft: 18,
-    paddingRight: 18
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: 'rgba(54, 196, 221, 0.5)'
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
 });
 
 AppRegistry.registerComponent('reactnativepractice', () => reactnativepractice);
